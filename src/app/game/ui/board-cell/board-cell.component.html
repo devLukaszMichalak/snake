@@ -1,0 +1,20 @@
+@switch (occupant) {
+    @case (Occupant.VOID) {
+        @if (isColumnOdd() && isRowOdd()) {
+            <div class="void-cell-odd"></div>
+        } @else if (!isColumnOdd() && isRowOdd()) {
+            <div class="void-cell-even"></div>
+        } @else if (isColumnOdd() && !isRowOdd()) {
+            <div class="void-cell-even"></div>
+        } @else {
+            <div class="void-cell-odd"></div>
+        }
+
+    }
+    @case (Occupant.SNAKE) {
+        <div class="snake-cell"></div>
+    }
+    @case (Occupant.APPLE) {
+        <div class="apple-cell"></div>
+    }
+}

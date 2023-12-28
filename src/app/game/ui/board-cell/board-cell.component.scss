@@ -1,0 +1,23 @@
+.cell {
+    padding: min(40px, 3svw) min(40px, 3svw);
+}
+
+.void-cell-odd {
+    @extend .cell;
+    background-color: #ff8ba7;
+}
+
+.void-cell-even{
+    @extend .cell;
+    background-color: #ce5a78;
+}
+
+.apple-cell {
+    @extend .cell;
+    background-color: #cebfb8;
+}
+
+.snake-cell {
+    @extend .cell;
+    background-color: #33272a;
+}
