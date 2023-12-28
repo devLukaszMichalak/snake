@@ -1,6 +1,8 @@
 <div class="game-container">
     <app-board/>
-
-    <app-result-dialog [showHideDialog]="showHideDialog" [text]="dialogText"></app-result-dialog>
 </div>
 
+<dialog>
+    <p tabindex="0">{{ dialogText }}</p>
+    <button>Close</button>
+</dialog>

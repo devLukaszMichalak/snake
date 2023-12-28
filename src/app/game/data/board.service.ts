@@ -8,7 +8,6 @@ import { Direction } from './direction';
 export class BoardService {
   
   private readonly currentBoardState = signal(new Board());
-  
   private readonly currentDirection = signal(Direction.LEFT);
   
   get board(): Signal<Board> {

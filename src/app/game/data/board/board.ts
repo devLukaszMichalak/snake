@@ -3,26 +3,45 @@ import { Row } from './row';
 import { Cell } from './cell';
 import { Position } from './position';
 
-export class Board extends Map<Row, Cell[]> {
+export class Board {
   
   private static readonly BOARD_SIZE = 10;
   
+  private board = new Map<Row, Cell[]>()
   private snakeBody = [new Position(0, 0)];
   
   constructor() {
-    super();
     this.setUpBoard();
-    
     this.setSnake();
     this.setRandomApple();
   }
   
   get rows(): Row[] {
-    return Array.from(this.keys());
+    return Array.from(this.board.keys());
   }
   
   cells(row: Row): Cell[] {
-    return Array.from(this.get(row)!.values());
+    return Array.from(this.board.get(row)!.values());
+  }
+  
+  
+  isWin(): boolean {
+    return !Array.from(this.board.values())
+      .flat()
+      .map(cell => cell.occupant)
+      .find(o => o === Occupant.VOID);
+  }
+  
+  setRandomApple() {
+    const row = this.getRandom();
+    const column = this.getRandom();
+    let appleCellPretender = this.board.get(row)![column];
+    
+    if (appleCellPretender.occupant === Occupant.VOID) {
+      appleCellPretender.occupant = Occupant.APPLE;
+    } else {
+      this.setRandomApple();
+    }
   }
   
   moveLeft() {
@@ -103,21 +122,9 @@ export class Board extends Map<Row, Cell[]> {
     return this.snakeBody[this.snakeBody.length - 1];
   }
   
-  setRandomApple() {
-    const row = this.getRandom();
-    const column = this.getRandom();
-    let appleCellPretender = this.get(row)![column];
-    
-    if (appleCellPretender.occupant === Occupant.VOID) {
-      appleCellPretender.occupant = Occupant.APPLE;
-    } else {
-      this.setRandomApple();
-    }
-  }
-  
   private setUpBoard = (): void => {
     for (let i = 0; i < Board.BOARD_SIZE; i++) {
-      this.set(i, this.initializeRow(Occupant.VOID, Board.BOARD_SIZE));
+      this.board.set(i, this.initializeRow(Occupant.VOID, Board.BOARD_SIZE));
     }
   };
   
@@ -129,11 +136,11 @@ export class Board extends Map<Row, Cell[]> {
   }
   
   private setCellOccupant(row: number, column: number, occupant: Occupant) {
-    this.get(row)![column] = {occupant: occupant};
+    this.board.get(row)![column] = {occupant: occupant};
   }
   
   private getCellOccupant(cell: Position): Occupant {
-    return this.get(cell.row)![cell.column].occupant;
+    return this.board.get(cell.row)![cell.column].occupant;
   }
   
   private getRandom() {
@@ -147,11 +154,4 @@ export class Board extends Map<Row, Cell[]> {
     }
     return row;
   };
-  
-  isWin(): boolean {
-    return !Array.from(this.values())
-      .flat()
-      .map(cell => cell.occupant)
-      .find(o => o === Occupant.VOID);
-  }
 }
