@@ -15,5 +15,5 @@ export class MenuButtonComponent {
   
   @Input() route!: Pages;
   @Input() label!: string;
-
+  
 }

@@ -1,8 +1,7 @@
 import { Component, inject, Signal } from '@angular/core';
 import { BoardService } from '../../data/board.service';
-import { Board } from '../../data/board';
-import { Occupant } from '../../data/occupant';
 import { BoardCellComponent } from '../board-cell/board-cell.component';
+import { Board } from '../../data/board/board';
 
 @Component({
   selector: 'app-board',

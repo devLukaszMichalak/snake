@@ -152,6 +152,6 @@ export class Board extends Map<Row, Cell[]> {
     return !Array.from(this.values())
       .flat()
       .map(cell => cell.occupant)
-      .find(o => o === Occupant.VOID)
+      .find(o => o === Occupant.VOID);
   }
 }

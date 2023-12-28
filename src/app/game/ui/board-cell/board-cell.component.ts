@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Occupant } from '../../data/occupant';
-import { Row } from '../../data/row';
-import { Column } from '../../data/column';
+import { Row } from '../../data/board/row';
+import { Column } from '../../data/board/column';
+import { Occupant } from '../../data/board/occupant';
 
 @Component({
   selector: 'app-board-cell',

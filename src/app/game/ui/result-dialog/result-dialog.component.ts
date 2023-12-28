@@ -14,7 +14,7 @@ export class ResultDialogComponent {
   
   constructor() {
     effect(() => {
-      const dialog = document.querySelector("dialog");
+      const dialog = document.querySelector('dialog');
       
       if (this.showHideDialog()) {
         dialog?.showModal();
@@ -24,7 +24,7 @@ export class ResultDialogComponent {
         });
         
       } else {
-        dialog?.close()
+        dialog?.close();
       }
     });
   }

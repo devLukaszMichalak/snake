@@ -1,5 +1,5 @@
 import { computed, Injectable, Signal, signal } from '@angular/core';
-import { Board } from './board';
+import { Board } from './board/board';
 import { Direction } from './direction';
 
 @Injectable({
