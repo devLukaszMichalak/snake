@@ -28,8 +28,7 @@ export class GameComponent implements OnInit {
     timer(500, 500)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .pipe(takeWhile(() => this.boardService.direction() !== Direction.NONE))
-      .subscribe(time => {
-        console.log(time);
+      .subscribe(() => {
         try {
           this.boardService.move();
           
@@ -71,6 +70,21 @@ export class GameComponent implements OnInit {
     }
   }
   
+  onSwipe(event: any) {
+    if (Math.abs(event.deltaX) <= 40 && Math.abs(event.deltaY) <= 40) {
+      return;
+    }
+    
+    let direction: Direction;
+    if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+      direction = event.deltaX > 0 ? Direction.RIGHT : Direction.LEFT;
+    } else {
+      direction = event.deltaY > 0 ? Direction.DOWN : Direction.UP;
+    }
+    
+    this.boardService.direction = direction;
+  }
+  
   private showDialog() {
     const dialog = document.querySelector('dialog');
     dialog?.showModal();
@@ -78,7 +92,7 @@ export class GameComponent implements OnInit {
     const closeButton = document.querySelector('dialog button');
     closeButton?.addEventListener('click', () => {
       dialog?.close();
-      this.router.navigate(['/' + Pages.MENU]).then()
+      this.router.navigate(['/' + Pages.MENU]).then();
     });
   }
   
