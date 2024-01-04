@@ -4,11 +4,14 @@ import { Column } from '../../data/board/column';
 import { Occupant } from '../../data/board/occupant';
 import { BoardService } from '../../data/board.service';
 import { Direction } from '../../data/direction';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-board-cell',
   standalone: true,
-  imports: [],
+  imports: [
+    NgTemplateOutlet
+  ],
   templateUrl: './board-cell.component.html',
   styleUrl: './board-cell.component.scss'
 })

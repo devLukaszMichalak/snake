@@ -34,125 +34,25 @@
         @if (isColumnOdd() && isRowOdd()) {
             <div class="void-cell-odd">
                 <div class="snake-head">
-                    @switch (direction()) {
-                        @case (Direction.UP) {
-                            <div class="eyes-up">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                        @case (Direction.DOWN) {
-                            <div class="eyes-down">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                        @case (Direction.LEFT) {
-                            <div class="eyes-left">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                        @case (Direction.RIGHT) {
-                            <div class="eyes-right">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                    }
+                    <ng-container *ngTemplateOutlet="snakeEyes"></ng-container>
                 </div>
             </div>
         } @else if (!isColumnOdd() && isRowOdd()) {
             <div class="void-cell-even">
                 <div class="snake-head">
-                    @switch (direction()) {
-                        @case (Direction.UP) {
-                            <div class="eyes-up">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                        @case (Direction.DOWN) {
-                            <div class="eyes-down">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                        @case (Direction.LEFT) {
-                            <div class="eyes-left">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                        @case (Direction.RIGHT) {
-                            <div class="eyes-right">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                    }
+                    <ng-container *ngTemplateOutlet="snakeEyes"></ng-container>
                 </div>
             </div>
         } @else if (isColumnOdd() && !isRowOdd()) {
             <div class="void-cell-even">
                 <div class="snake-head">
-                    @switch (direction()) {
-                        @case (Direction.UP) {
-                            <div class="eyes-up">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                        @case (Direction.DOWN) {
-                            <div class="eyes-down">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                        @case (Direction.LEFT) {
-                            <div class="eyes-left">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                        @case (Direction.RIGHT) {
-                            <div class="eyes-right">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                    }
+                    <ng-container *ngTemplateOutlet="snakeEyes"></ng-container>
                 </div>
             </div>
         } @else {
             <div class="void-cell-odd">
                 <div class="snake-head">
-                    @switch (direction()) {
-                        @case (Direction.UP) {
-                            <div class="eyes-up">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                        @case (Direction.DOWN) {
-                            <div class="eyes-down">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                        @case (Direction.LEFT) {
-                            <div class="eyes-left">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                        @case (Direction.RIGHT) {
-                            <div class="eyes-right">
-                                <div class="snake-eye"></div>
-                                <div class="snake-eye"></div>
-                            </div>
-                        }
-                    }
+                    <ng-container *ngTemplateOutlet="snakeEyes"></ng-container>
                 </div>
             </div>
         }
@@ -177,3 +77,32 @@
         }
     }
 }
+
+<ng-template #snakeEyes>
+    @switch (direction()) {
+        @case (Direction.UP) {
+            <div class="eyes-up">
+                <div class="snake-eye"></div>
+                <div class="snake-eye"></div>
+            </div>
+        }
+        @case (Direction.DOWN) {
+            <div class="eyes-down">
+                <div class="snake-eye"></div>
+                <div class="snake-eye"></div>
+            </div>
+        }
+        @case (Direction.LEFT) {
+            <div class="eyes-left">
+                <div class="snake-eye"></div>
+                <div class="snake-eye"></div>
+            </div>
+        }
+        @case (Direction.RIGHT) {
+            <div class="eyes-right">
+                <div class="snake-eye"></div>
+                <div class="snake-eye"></div>
+            </div>
+        }
+    }
+</ng-template>
