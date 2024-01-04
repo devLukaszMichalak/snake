@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Pages } from '../../routing/routes';
 import { RouterLink } from '@angular/router';
+import { Pages } from '../../../routing/routes';
 
 @Component({
   selector: 'app-menu-button',

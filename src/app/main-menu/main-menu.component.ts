@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MenuButtonComponent } from './ui/menu-button.component';
 import { Pages } from '../routing/routes';
+import { MenuButtonComponent } from '../common/ui/menu-button/menu-button.component';
 
 @Component({
   selector: 'app-main-menu',

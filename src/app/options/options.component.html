@@ -1,3 +1,5 @@
-<button [routerLink]="'/' + Pages.OPTIONS_GAMEPLAY">Gameplay</button>
-<button [routerLink]="'/' + Pages.OPTIONS_VISUAL">Visual</button>
+<div class="buttons">
+    <app-menu-button [label]="'Gameplay'" [route]="Pages.OPTIONS_GAMEPLAY"></app-menu-button>
+    <app-menu-button [label]="'Visual'" [route]="Pages.OPTIONS_VISUAL"></app-menu-button>
+</div>
 <router-outlet></router-outlet>
