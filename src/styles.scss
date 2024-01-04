@@ -1,3 +1,11 @@
+:root {
+    --pink: #ff8ba7;
+    --pink-darker: #ce5a78;
+    --brown: #33272a;
+    --brown-lighter: #49373c;
+    --creme: #faeee7;
+}
+
 body {
     position: absolute;
     top: 0;
@@ -6,13 +14,13 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: #faeee7;
+    background-color: var(--creme);
 }
 
 button {
     padding: 20px;
-    background-color: #ff8ba7;
-    color: #33272a;
+    background-color: var(--pink);
+    color: var(--brown);
     border-radius: 11px;
     width: 100%;
     border: 0;
@@ -24,13 +32,13 @@ button {
     &:hover {
         transform: scale(0.95);
         cursor: pointer;
-        background-color: #ce5a78;
-        color: #49373c;
+        background-color: var(--pink-darker);
+        color: var(--brown-lighter);
     }
 }
 
 dialog {
-    background-color: #faeee7;
+    background-color: var(--creme);
     border: 0;
     padding: 40px;
     border-radius: 11px;
@@ -39,6 +47,6 @@ dialog {
     p {
         font-size: 30px;
         font-weight: bold;
-        color: #33272a;
+        color: var(--brown);
     }
 }

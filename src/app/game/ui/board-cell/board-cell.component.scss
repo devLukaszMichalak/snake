@@ -4,20 +4,20 @@
 
 .void-cell-odd {
     @extend .cell;
-    background-color: #ff8ba7;
+    background-color: var(--pink);
 }
 
 .void-cell-even {
     @extend .cell;
-    background-color: #ce5a78;
+    background-color: var(--pink)-darker;
 }
 
 .apple-cell {
     @extend .cell;
-    background-color: #cebfb8;
+    background-color: var(--creme);
 }
 
 .snake-cell {
     @extend .cell;
-    background-color: #33272a;
+    background-color: var(--brown);
 }
