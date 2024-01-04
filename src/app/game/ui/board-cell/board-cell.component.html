@@ -11,10 +11,169 @@
         }
 
     }
-    @case (Occupant.SNAKE) {
-        <div class="snake-cell"></div>
+    @case (Occupant.SNAKE_BODY) {
+        @if (isColumnOdd() && isRowOdd()) {
+            <div class="void-cell-odd">
+                <div class="snake-body"></div>
+            </div>
+        } @else if (!isColumnOdd() && isRowOdd()) {
+            <div class="void-cell-even">
+                <div class="snake-body"></div>
+            </div>
+        } @else if (isColumnOdd() && !isRowOdd()) {
+            <div class="void-cell-even">
+                <div class="snake-body"></div>
+            </div>
+        } @else {
+            <div class="void-cell-odd">
+                <div class="snake-body"></div>
+            </div>
+        }
+    }
+    @case (Occupant.SNAKE_HEAD) {
+        @if (isColumnOdd() && isRowOdd()) {
+            <div class="void-cell-odd">
+                <div class="snake-head">
+                    @switch (direction()) {
+                        @case (Direction.UP) {
+                            <div class="eyes-up">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                        @case (Direction.DOWN) {
+                            <div class="eyes-down">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                        @case (Direction.LEFT) {
+                            <div class="eyes-left">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                        @case (Direction.RIGHT) {
+                            <div class="eyes-right">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        } @else if (!isColumnOdd() && isRowOdd()) {
+            <div class="void-cell-even">
+                <div class="snake-head">
+                    @switch (direction()) {
+                        @case (Direction.UP) {
+                            <div class="eyes-up">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                        @case (Direction.DOWN) {
+                            <div class="eyes-down">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                        @case (Direction.LEFT) {
+                            <div class="eyes-left">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                        @case (Direction.RIGHT) {
+                            <div class="eyes-right">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        } @else if (isColumnOdd() && !isRowOdd()) {
+            <div class="void-cell-even">
+                <div class="snake-head">
+                    @switch (direction()) {
+                        @case (Direction.UP) {
+                            <div class="eyes-up">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                        @case (Direction.DOWN) {
+                            <div class="eyes-down">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                        @case (Direction.LEFT) {
+                            <div class="eyes-left">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                        @case (Direction.RIGHT) {
+                            <div class="eyes-right">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        } @else {
+            <div class="void-cell-odd">
+                <div class="snake-head">
+                    @switch (direction()) {
+                        @case (Direction.UP) {
+                            <div class="eyes-up">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                        @case (Direction.DOWN) {
+                            <div class="eyes-down">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                        @case (Direction.LEFT) {
+                            <div class="eyes-left">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                        @case (Direction.RIGHT) {
+                            <div class="eyes-right">
+                                <div class="snake-eye"></div>
+                                <div class="snake-eye"></div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        }
     }
     @case (Occupant.APPLE) {
-        <div class="apple-cell"></div>
+        @if (isColumnOdd() && isRowOdd()) {
+            <div class="void-cell-odd">
+                <div class="apple"></div>
+            </div>
+        } @else if (!isColumnOdd() && isRowOdd()) {
+            <div class="void-cell-even">
+                <div class="apple"></div>
+            </div>
+        } @else if (isColumnOdd() && !isRowOdd()) {
+            <div class="void-cell-even">
+                <div class="apple"></div>
+            </div>
+        } @else {
+            <div class="void-cell-odd">
+                <div class="apple"></div>
+            </div>
+        }
     }
 }

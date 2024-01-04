@@ -1,5 +1,6 @@
 export enum Occupant {
-  SNAKE,
+  SNAKE_BODY,
+  SNAKE_HEAD,
   VOID,
   APPLE
 }

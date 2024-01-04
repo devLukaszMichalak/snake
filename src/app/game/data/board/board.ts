@@ -24,7 +24,6 @@ export class Board {
     return Array.from(this.board.get(row)!.values());
   }
   
-  
   isWin(): boolean {
     return !Array.from(this.board.values())
       .flat()
@@ -52,7 +51,7 @@ export class Board {
       newHead.column = Board.BOARD_SIZE - 1;
     }
     
-    this.move(newHead);
+    this.move(head, newHead);
   }
   
   moveRight() {
@@ -63,7 +62,7 @@ export class Board {
       newHead.column = 0;
     }
     
-    this.move(newHead);
+    this.move(head, newHead);
   }
   
   moveUp() {
@@ -74,7 +73,7 @@ export class Board {
       newHead.row = Board.BOARD_SIZE - 1;
     }
     
-    this.move(newHead);
+    this.move(head, newHead);
   }
   
   moveDown() {
@@ -85,32 +84,40 @@ export class Board {
       newHead.row = 0;
     }
     
-    this.move(newHead);
+    this.move(head, newHead);
   }
   
-  private move(newHead: Position) {
+  private move(oldHead: Position, newHead: Position) {
+    let tail = this.snakeBody[0];
+    if (this.snakeBody.length === 2 && tail.row === newHead.row && tail.column === newHead.column) {
+      throw new Error();
+    }
     
     let cellOccupant = this.getCellOccupant(newHead);
-    let tail = this.snakeBody[0];
     if (tail.row === newHead.row && tail.column === newHead.column) {
-      this.snakeBody.push(newHead);
       this.snakeBody.shift();
+      this.snakeBody.push(newHead);
+      this.setCellOccupant(newHead.row, newHead.column, Occupant.SNAKE_HEAD);
+      this.setCellOccupant(oldHead.row, oldHead.column, Occupant.SNAKE_BODY);
       return;
     }
     
     switch (cellOccupant) {
       case Occupant.APPLE:
         this.snakeBody.push(newHead);
-        this.setCellOccupant(newHead.row, newHead.column, Occupant.SNAKE);
+        this.setCellOccupant(newHead.row, newHead.column, Occupant.SNAKE_HEAD);
+        this.setCellOccupant(oldHead.row, oldHead.column, Occupant.SNAKE_BODY);
+        
         this.setRandomApple();
         break;
       
-      case Occupant.SNAKE:
+      case Occupant.SNAKE_BODY:
         throw new Error();
       
       case Occupant.VOID:
         this.snakeBody.push(newHead);
-        this.setCellOccupant(newHead.row, newHead.column, Occupant.SNAKE);
+        this.setCellOccupant(newHead.row, newHead.column, Occupant.SNAKE_HEAD);
+        this.setCellOccupant(oldHead.row, oldHead.column, Occupant.SNAKE_BODY);
         
         const tail = this.snakeBody.shift()!;
         this.setCellOccupant(tail.row, tail.column, Occupant.VOID);
@@ -131,7 +138,7 @@ export class Board {
   private setSnake() {
     const row = 1;
     const column = 1;
-    this.setCellOccupant(row, column, Occupant.SNAKE);
+    this.setCellOccupant(row, column, Occupant.SNAKE_HEAD);
     this.snakeBody = [new Position(row, column)];
   }
   

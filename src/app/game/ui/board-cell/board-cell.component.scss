@@ -1,5 +1,5 @@
 .cell {
-    padding: min(30px, 3svw) min(30px, 3svw);
+    padding: min(30px, 3svw);
 }
 
 .void-cell-odd {
@@ -9,15 +9,59 @@
 
 .void-cell-even {
     @extend .cell;
-    background-color: var(--pink)-darker;
+    background-color: var(--pink-darker);
 }
 
-.apple-cell {
+div.snake-body {
     @extend .cell;
-    background-color: var(--creme);
-}
-
-.snake-cell {
-    @extend .cell;
+    margin: max(-30px, -3svw);
+    border-radius: 100%;
     background-color: var(--brown);
+}
+
+div.apple {
+    @extend .cell;
+    margin: max(-30px, -3svw);
+    border-radius: 100%;
+    background-color: red;
+}
+
+div.snake-head {
+    @extend .cell;
+    margin: max(-30px, -3svw);
+    border-radius: 100%;
+    background-color: var(--brown);
+    display: flex;
+    gap: 1svw;
+
+    div.eyes-up {
+        transform: rotate(90deg);
+        margin-top: max(-26px, -2.6svw);
+        margin-left: max(-13px, -1.3svw);
+    }
+
+    div.eyes-down {
+        transform: rotate(90deg);
+        margin-bottom: max(-26px, -2.6svw);
+        margin-left: max(-13px, -1.3svw);
+    }
+
+    div.eyes-left {
+        padding-right: min(13px, 1.3svw);
+        margin-left: max(-13px, -1.3svw);
+    }
+
+    div.eyes-right {
+        padding-left: min(13px, 1.3svw);
+        margin-right: max(-13px, -1.3svw);
+    }
+
+    div div.snake-eye {
+        @extend .cell;
+        transform: scale(0.1);
+        border-radius: 100%;
+        margin: calc(max(-30px, -3svw) - 1svw);
+        background-color: var(--creme);
+    }
+
 }

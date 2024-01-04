@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input, Signal } from '@angular/core';
 import { Row } from '../../data/board/row';
 import { Column } from '../../data/board/column';
 import { Occupant } from '../../data/board/occupant';
+import { BoardService } from '../../data/board.service';
+import { Direction } from '../../data/direction';
 
 @Component({
   selector: 'app-board-cell',
@@ -16,6 +18,8 @@ export class BoardCellComponent {
   @Input() row!: Row;
   @Input() column!: Column;
   
+  public direction: Signal<Direction> = inject(BoardService).direction
+  
   protected readonly Occupant = Occupant;
   
   isRowOdd() {
@@ -25,4 +29,6 @@ export class BoardCellComponent {
   isColumnOdd() {
     return this.column % 2 !== 0;
   }
+  
+  protected readonly Direction = Direction;
 }
