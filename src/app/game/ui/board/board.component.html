@@ -1,6 +1,6 @@
 @for (row of board().rows;track row;) {
     <div class="row">
-        @for (cell of board().cells(row);track cell.occupant) {
+        @for (cell of board().cells(row);track cell) {
             <app-board-cell [row]="row" [occupant]="cell.occupant" [column]="$index"></app-board-cell>
         }
     </div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { OptionsService } from '../../../common/data/options.service';
 
 @Component({
   selector: 'app-visual-options',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './visual-options.component.scss'
 })
 export class VisualOptionsComponent {
-
+  
+  private optionsService = inject(OptionsService);
+  
 }

@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { Pages } from './routes';
-import { VisualOptionsComponent } from '../options/ui/visual-options/visual-options.component';
 
 export const routes: Routes = [
   {
@@ -17,11 +16,11 @@ export const routes: Routes = [
     children: [
       {
         path: Pages.GAMEPLAY,
-        loadComponent: () => import('../options/ui/gameplay-options/gameplay-options.component').then(mod => mod.GameplayOptionsComponent)
+        loadComponent: () => import('../options/children/gameplay-options/gameplay-options.component').then(mod => mod.GameplayOptionsComponent)
       },
       {
         path: Pages.VISUAL,
-        loadComponent: () => import('../options/ui/visual-options/visual-options.component').then(mod => mod.VisualOptionsComponent)
+        loadComponent: () => import('../options/children/visual-options/visual-options.component').then(mod => mod.VisualOptionsComponent)
       }
     ]
   },

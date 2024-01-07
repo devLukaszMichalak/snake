@@ -6,6 +6,7 @@ import { takeWhile, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { Pages } from '../routing/routes';
+import { OptionsService } from '../common/data/options.service';
 
 @Component({
   selector: 'app-game',
@@ -19,13 +20,14 @@ import { Pages } from '../routing/routes';
 export class GameComponent implements OnInit {
   
   private boardService = inject(BoardService);
+  private optionsService = inject(OptionsService);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
   
   dialogText: string = '';
   
   ngOnInit() {
-    timer(500, 500)
+    timer(this.optionsService.difficulty(), this.optionsService.difficulty())
       .pipe(takeUntilDestroyed(this.destroyRef))
       .pipe(takeWhile(() => this.boardService.direction() !== Direction.NONE))
       .subscribe(() => {
