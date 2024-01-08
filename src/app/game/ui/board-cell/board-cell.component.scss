@@ -15,7 +15,7 @@
 div.snake-body {
     @extend .cell;
     margin: max(-30px, -3svw);
-    border-radius: 100%;
+    border-radius: 40%;
     background-color: var(--brown);
 }
 
@@ -23,13 +23,13 @@ div.apple {
     @extend .cell;
     margin: max(-30px, -3svw);
     border-radius: 100%;
-    background-color: red;
+    background-color: var(--creme);
 }
 
 div.snake-head {
     @extend .cell;
     margin: max(-30px, -3svw);
-    border-radius: 100%;
+    border-radius: 40%;
     background-color: var(--brown);
     display: flex;
     gap: 1svw;
