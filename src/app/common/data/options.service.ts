@@ -8,12 +8,11 @@ export class OptionsService {
   
   public static CAN_PASS_THROUGH_WALLS = true;
   
-  _difficulty = signal(Difficulty.EASY);
-  _canPassThroughWalls = signal(OptionsService.CAN_PASS_THROUGH_WALLS);
+  private _difficulty = signal(Difficulty.EASY);
+  private _canPassThroughWalls = signal(OptionsService.CAN_PASS_THROUGH_WALLS);
   
   constructor() {
     effect(() => {
-      console.log("dsa")
       OptionsService.CAN_PASS_THROUGH_WALLS = this._canPassThroughWalls();
     });
   }

@@ -1,5 +1,8 @@
-<div class="buttons">
-    <app-menu-button [label]="'Gameplay'" [route]="Pages.OPTIONS_GAMEPLAY"></app-menu-button>
-    <app-menu-button [label]="'Visual'" [route]="Pages.OPTIONS_VISUAL"></app-menu-button>
+<div class="container">
+    <div class="buttons">
+        <app-menu-button [label]="'Gameplay'" [route]="Pages.OPTIONS_GAMEPLAY"></app-menu-button>
+        <app-menu-button [label]="'Visual'" [route]="Pages.OPTIONS_VISUAL"></app-menu-button>
+    </div>
+    <router-outlet></router-outlet>
+    <app-menu-button [route]="Pages.MENU" [label]="'Back'"></app-menu-button>
 </div>
-<router-outlet></router-outlet>

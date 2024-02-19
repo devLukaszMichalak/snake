@@ -1,7 +1,13 @@
 .game-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 2svh;
     height: 100svh;
     width: 100svw;
+
+    app-menu-button {
+        width: 50%;
+    }
 }

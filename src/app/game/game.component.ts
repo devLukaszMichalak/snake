@@ -5,14 +5,16 @@ import { Direction } from './data/direction';
 import { takeWhile, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
-import { Pages } from '../routing/routes';
+import { Pages } from '../routing/pages';
 import { OptionsService } from '../common/data/options.service';
+import { MenuButtonComponent } from '../common/ui/menu-button/menu-button.component';
 
 @Component({
   selector: 'app-game',
   standalone: true,
   imports: [
-    BoardComponent
+    BoardComponent,
+    MenuButtonComponent
   ],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
@@ -98,4 +100,5 @@ export class GameComponent implements OnInit {
     });
   }
   
+  protected readonly Pages = Pages;
 }

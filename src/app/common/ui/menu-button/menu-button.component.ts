@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Pages } from '../../../routing/routes';
+import { Pages } from '../../../routing/pages';
 
 @Component({
   selector: 'app-menu-button',
@@ -13,7 +13,8 @@ import { Pages } from '../../../routing/routes';
 })
 export class MenuButtonComponent {
   
-  @Input() route!: Pages;
-  @Input() label!: string;
+  route: InputSignal<Pages> = input.required();
+  label: InputSignal<string> = input.required();
   
 }
+

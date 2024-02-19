@@ -1,4 +1,4 @@
-import { Component, inject, Input, Signal } from '@angular/core';
+import { Component, inject, input, InputSignal, Signal } from '@angular/core';
 import { Row } from '../../data/board/row';
 import { Column } from '../../data/board/column';
 import { Occupant } from '../../data/board/occupant';
@@ -17,21 +17,16 @@ import { NgTemplateOutlet } from '@angular/common';
 })
 export class BoardCellComponent {
   
-  @Input() occupant!: Occupant;
-  @Input() row!: Row;
-  @Input() column!: Column;
+  row: InputSignal<Row> = input.required();
+  occupant: InputSignal<Occupant> = input.required();
+  column: InputSignal<Column> = input.required();
   
-  public direction: Signal<Direction> = inject(BoardService).direction
+  direction: Signal<Direction> = inject(BoardService).direction;
   
   protected readonly Occupant = Occupant;
-  
-  isRowOdd() {
-    return this.row % 2 !== 0;
-  }
-  
-  isColumnOdd() {
-    return this.column % 2 !== 0;
-  }
-  
   protected readonly Direction = Direction;
+  
+  isRowOdd = () => this.row() % 2 !== 0;
+  isColumnOdd = () => this.column() % 2 !== 0;
+  
 }

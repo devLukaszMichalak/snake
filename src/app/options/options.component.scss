@@ -1,5 +1,21 @@
-.buttons {
+.container {
     display: flex;
-    gap: 2svw;
-    padding: 1svh;
+    justify-content: center;
+    width: 50svw;
+    height: 100svh;
+    flex-direction: column;
+    gap: 2svh;
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 2svh;
+    }
+
+    app-menu-button {
+        margin-top: 40px;
+        width: 100%;
+    }
 }

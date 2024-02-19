@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { Pages } from '../routing/routes';
+import { Pages } from '../routing/pages';
 import { MenuButtonComponent } from '../common/ui/menu-button/menu-button.component';
 
 @Component({
