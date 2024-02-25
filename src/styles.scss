@@ -6,6 +6,15 @@
     --creme: #faeee7;
 }
 
+@font-face {
+    font-family: 'Barlow-Regulr';
+    src: url('/assets/Barlow-Regular.ttf') format('truetype');
+}
+
+* {
+    font-family: 'Barlow-Regulr', sans-serif;
+}
+
 body {
     position: absolute;
     top: 0;
