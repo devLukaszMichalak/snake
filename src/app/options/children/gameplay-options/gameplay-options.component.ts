@@ -1,10 +1,10 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { OptionsService } from '../../../common/data/options.service';
+import { OptionsService } from '../../../common/data/options/options.service';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Difficulty } from '../../../common/data/difficulty';
+import { Difficulty } from '../../../common/data/options/difficulty';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-type GameplayOptionsFormT = FormGroup<{
+type GameplayOptionsForm = FormGroup<{
   difficulty: FormControl<Difficulty | null>,
   canPassThroughWalls: FormControl<boolean | null>
 }>
@@ -24,7 +24,7 @@ export class GameplayOptionsComponent implements OnInit {
   
   protected readonly Difficulty = Difficulty;
   
-  gameplayOptionsForm: GameplayOptionsFormT = this.formBuilder.group({
+  gameplayOptionsForm: GameplayOptionsForm = this.formBuilder.group({
       difficulty: [Difficulty.EASY],
       canPassThroughWalls: [true]
     }

@@ -1,12 +1,12 @@
 import { Component, DestroyRef, HostListener, inject, OnInit } from '@angular/core';
 import { BoardComponent } from './ui/board/board.component';
-import { BoardService } from './data/board.service';
-import { Direction } from './data/direction';
+import { BoardService } from './data/board/board.service';
+import { Direction } from './data/board/direction';
 import { takeWhile, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { Pages } from '../routing/pages';
-import { OptionsService } from '../common/data/options.service';
+import { OptionsService } from '../common/data/options/options.service';
 import { MenuButtonComponent } from '../common/ui/menu-button/menu-button.component';
 
 @Component({
@@ -26,6 +26,7 @@ export class GameComponent implements OnInit {
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
   
+  readonly Pages = Pages;
   dialogText: string = '';
   
   ngOnInit() {
@@ -37,21 +38,13 @@ export class GameComponent implements OnInit {
           this.boardService.move();
           
         } catch (error) {
-          this.boardService.direction = Direction.NONE;
-          if (this.boardService.board().isWin()) {
-            this.dialogText = `Congratulations! You won!.`;
-          } else {
-            this.dialogText = 'Game over!';
-          }
-          
-          this.showDialog();
+          this.endTheGame();
         }
       });
-    
   }
   
   @HostListener('document:keydown', ['$event'])
-  shortcuts(event: KeyboardEvent) {
+  handleKeyboard(event: KeyboardEvent) {
     
     if (event.key === 'ArrowUp') {
       event.preventDefault();
@@ -89,6 +82,17 @@ export class GameComponent implements OnInit {
     this.boardService.direction = direction;
   }
   
+  private endTheGame() {
+    this.boardService.direction = Direction.NONE;
+    if (this.boardService.board().isWin()) {
+      this.dialogText = `Congratulations! You won!.`;
+    } else {
+      this.dialogText = 'Game over!';
+    }
+    
+    this.showDialog();
+  }
+  
   private showDialog() {
     const dialog = document.querySelector('dialog');
     dialog?.showModal();
@@ -100,5 +104,4 @@ export class GameComponent implements OnInit {
     });
   }
   
-  protected readonly Pages = Pages;
 }

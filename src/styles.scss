@@ -1,9 +1,9 @@
 :root {
-    --pink: #ff8ba7;
-    --pink-darker: #ce5a78;
-    --brown: #33272a;
-    --brown-lighter: #49373c;
-    --creme: #faeee7;
+    --easy: #ff8ba7;
+    --easy-darker: #ce5a78;
+    --hard: #33272a;
+    --hard-lighter: #49373c;
+    --cosy: #faeee7;
 }
 
 @font-face {
@@ -23,13 +23,13 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: var(--creme);
+    background-color: var(--cosy);
 }
 
 button {
     padding: 20px;
-    background-color: var(--pink);
-    color: var(--brown);
+    background-color: var(--easy);
+    color: var(--hard);
     border-radius: 11px;
     width: 100%;
     border: 0;
@@ -41,13 +41,13 @@ button {
     &:hover {
         transform: scale(0.95);
         cursor: pointer;
-        background-color: var(--pink-darker);
-        color: var(--brown-lighter);
+        background-color: var(--easy-darker);
+        color: var(--hard-lighter);
     }
 }
 
 dialog {
-    background-color: var(--creme);
+    background-color: var(--cosy);
     border: 0;
     padding: 40px;
     border-radius: 11px;
@@ -56,6 +56,6 @@ dialog {
     p {
         font-size: 30px;
         font-weight: bold;
-        color: var(--brown);
+        color: var(--hard);
     }
 }

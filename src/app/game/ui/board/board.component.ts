@@ -1,5 +1,5 @@
 import { Component, inject, Signal } from '@angular/core';
-import { BoardService } from '../../data/board.service';
+import { BoardService } from '../../data/board/board.service';
 import { BoardCellComponent } from '../board-cell/board-cell.component';
 import { Board } from '../../data/board/board';
 

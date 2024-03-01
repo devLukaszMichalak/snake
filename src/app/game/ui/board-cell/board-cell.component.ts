@@ -2,8 +2,8 @@ import { Component, inject, input, InputSignal, Signal } from '@angular/core';
 import { Row } from '../../data/board/row';
 import { Column } from '../../data/board/column';
 import { Occupant } from '../../data/board/occupant';
-import { BoardService } from '../../data/board.service';
-import { Direction } from '../../data/direction';
+import { BoardService } from '../../data/board/board.service';
+import { Direction } from '../../data/board/direction';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
