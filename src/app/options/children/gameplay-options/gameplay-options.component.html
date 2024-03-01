@@ -1,12 +1,15 @@
 <form [formGroup]="gameplayOptionsForm">
-    <select formControlName="difficulty">
+
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty" formControlName="difficulty">
         <option [value]="Difficulty.EASY">Easy</option>
         <option [value]="Difficulty.MEDIUM">Medium</option>
         <option [value]="Difficulty.HARD">Hard</option>
         <option [value]="Difficulty.HELL">Hell</option>
     </select>
 
-    <select formControlName="canPassThroughWalls">
+    <label for="canPassThroughWalls">Can pass through walls:</label>
+    <select id="canPassThroughWalls" formControlName="canPassThroughWalls">
         <option [value]="true">Yes</option>
         <option [value]="false">No</option>
     </select>

@@ -1,5 +1,7 @@
 <form [formGroup]="visualOptionsForm">
-    <select formControlName="colorSetName">
+
+    <label for="colorSetName">Theme:</label>
+    <select id="colorSetName" formControlName="colorSetName">
         <option [value]="ColorSetName.PINK_CREME">Pink-creme</option>
         <option [value]="ColorSetName.GREENISH">Greenish</option>
     </select>

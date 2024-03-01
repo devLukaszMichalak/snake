@@ -1,9 +1,9 @@
 import { computed, effect, Injectable, Signal, signal } from '@angular/core';
-import { Difficulty } from './difficulty';
-import { GameplayOptions } from './gameplay-options';
-import { COLORS } from './colors';
-import { VisualOptions } from './visual-options';
-import { ColorSet } from './color-set';
+import { Difficulty } from './gameplay/difficulty';
+import { GameplayOptions } from './gameplay/gameplay-options';
+import { COLORS } from './visual/colors';
+import { VisualOptions } from './visual/visual-options';
+import { ColorSet } from './visual/color-set';
 
 @Injectable({
   providedIn: 'root'

@@ -2,8 +2,8 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { OptionsService } from '../../../common/data/options/options.service';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { COLORS } from '../../../common/data/options/colors';
-import { ColorSetName } from '../../../common/data/options/color-set';
+import { COLORS } from '../../../common/data/options/visual/colors';
+import { ColorSetName } from '../../../common/data/options/visual/color-set';
 
 type VisualOptionsForm = FormGroup<{
   colorSetName: FormControl<ColorSetName | null>,

@@ -1,61 +1,71 @@
 :root {
-    --easy: #ff8ba7;
-    --easy-darker: #ce5a78;
-    --hard: #33272a;
-    --hard-lighter: #49373c;
-    --cosy: #faeee7;
+  --easy: #ff8ba7;
+  --easy-darker: #ce5a78;
+  --hard: #33272a;
+  --hard-lighter: #49373c;
+  --cosy: #faeee7;
 }
 
 @font-face {
-    font-family: 'Barlow-Regulr';
-    src: url('/assets/Barlow-Regular.ttf') format('truetype');
+  font-family: 'Barlow-Regulr';
+  src: url('/assets/Barlow-Regular.ttf') format('truetype');
 }
 
 * {
-    font-family: 'Barlow-Regulr', sans-serif;
+  font-family: 'Barlow-Regulr', sans-serif;
 }
 
 body {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: var(--cosy);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--cosy);
 }
 
-button {
-    padding: 20px;
-    background-color: var(--easy);
-    color: var(--hard);
-    border-radius: 11px;
-    width: 100%;
-    border: 0;
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    transition: transform 150ms linear;
+label {
+  margin-left: 22px;
+  color: var(--hard);
+  font-size: 18px;
+  margin-bottom: 2px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
 
-    &:hover {
-        transform: scale(0.95);
-        cursor: pointer;
-        background-color: var(--easy-darker);
-        color: var(--hard-lighter);
-    }
+select,
+button {
+  padding: 20px;
+  background-color: var(--easy);
+  color: var(--hard);
+  border-radius: 11px;
+  width: 100%;
+  border: 0;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  transition: transform 150ms linear;
+
+  &:hover {
+    transform: scale(0.95);
+    cursor: pointer;
+    background-color: var(--easy-darker);
+    color: var(--hard-lighter);
+  }
 }
 
 dialog {
-    background-color: var(--cosy);
-    border: 0;
-    padding: 40px;
-    border-radius: 11px;
-    transition: display 150ms linear;
+  background-color: var(--cosy);
+  border: 0;
+  padding: 40px;
+  border-radius: 11px;
+  transition: display 150ms linear;
 
-    p {
-        font-size: 30px;
-        font-weight: bold;
-        color: var(--hard);
-    }
+  p {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--hard);
+  }
 }
