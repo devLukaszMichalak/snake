@@ -6,7 +6,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 type GameplayOptionsForm = FormGroup<{
   difficulty: FormControl<Difficulty | null>,
-  canPassThroughWalls: FormControl<boolean | null>
+  canPassThroughWalls: FormControl<string | null>
 }>
 
 @Component({
@@ -26,7 +26,7 @@ export class GameplayOptionsComponent implements OnInit {
   
   gameplayOptionsForm: GameplayOptionsForm = this.formBuilder.group({
       difficulty: [Difficulty.EASY],
-      canPassThroughWalls: [true]
+      canPassThroughWalls: ['true']
     }
   );
   
@@ -39,7 +39,7 @@ export class GameplayOptionsComponent implements OnInit {
           this.optionsService.difficulty = formData.difficulty;
         }
         if (formData.canPassThroughWalls) {
-          this.optionsService.canPassThroughWalls = formData.canPassThroughWalls;
+          this.optionsService.canPassThroughWalls = formData.canPassThroughWalls === 'true';
         }
       });
   }

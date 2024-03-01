@@ -2,6 +2,7 @@ import { Occupant } from './occupant';
 import { Row } from './row';
 import { Cell } from './cell';
 import { Position } from './position';
+import { OptionsService } from '../../../common/data/options/options.service';
 
 export class Board {
   
@@ -48,6 +49,11 @@ export class Board {
     const newHead = new Position(head.row, head.column - 1);
     
     if (newHead.column === -1) {
+      
+      if(!OptionsService.CAN_PASS_THROUGH_WALLS) {
+        throw new Error();
+      }
+      
       newHead.column = Board.BOARD_SIZE - 1;
     }
     
@@ -59,6 +65,11 @@ export class Board {
     const newHead = new Position(head.row, head.column + 1);
     
     if (newHead.column === Board.BOARD_SIZE) {
+      
+      if(!OptionsService.CAN_PASS_THROUGH_WALLS) {
+        throw new Error();
+      }
+      
       newHead.column = 0;
     }
     
@@ -70,6 +81,11 @@ export class Board {
     const newHead = new Position(head.row - 1, head.column);
     
     if (newHead.row === -1) {
+      
+      if(!OptionsService.CAN_PASS_THROUGH_WALLS) {
+        throw new Error();
+      }
+      
       newHead.row = Board.BOARD_SIZE - 1;
     }
     
@@ -81,6 +97,11 @@ export class Board {
     const newHead = new Position(head.row + 1, head.column);
     
     if (newHead.row === Board.BOARD_SIZE) {
+      
+      if(!OptionsService.CAN_PASS_THROUGH_WALLS) {
+        throw new Error();
+      }
+      
       newHead.row = 0;
     }
     
@@ -136,8 +157,8 @@ export class Board {
   };
   
   private setSnake() {
-    const row = 1;
-    const column = 1;
+    const row = this.getRandom();
+    const column = this.getRandom();
     this.setCellOccupant(row, column, Occupant.SNAKE_HEAD);
     this.snakeBody = [new Position(row, column)];
   }

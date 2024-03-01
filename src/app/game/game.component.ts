@@ -100,7 +100,8 @@ export class GameComponent implements OnInit {
     const closeButton = document.querySelector('dialog button');
     closeButton?.addEventListener('click', () => {
       dialog?.close();
-      this.router.navigate(['/' + Pages.MENU]).then();
+      this.router.navigate(['/' + Pages.MENU])
+        .then(() => this.boardService.reset());
     });
   }
   

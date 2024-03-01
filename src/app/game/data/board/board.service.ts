@@ -8,7 +8,7 @@ import { Direction } from './direction';
 export class BoardService {
   
   private readonly _board = signal(new Board());
-  private readonly _direction = signal(Direction.LEFT);
+  private readonly _direction = signal(Direction.RIGHT);
   
   get board(): Signal<Board> {
     return computed(() => this._board());
@@ -21,6 +21,11 @@ export class BoardService {
   set direction(direction: Direction) {
     this._direction.set(direction);
   }
+  
+  reset = () => {
+    this._board.set(new Board());
+    this._direction.set(Direction.RIGHT);
+  };
   
   move() {
     switch (this._direction()) {

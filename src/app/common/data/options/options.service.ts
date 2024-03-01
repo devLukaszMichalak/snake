@@ -10,16 +10,20 @@ import { ColorSet } from './visual/color-set';
 })
 export class OptionsService {
   
-  public static CAN_PASS_THROUGH_WALLS = true;
+  private static _CAN_PASS_THROUGH_WALLS = true;
   
   private _difficulty = signal(Difficulty.EASY);
   private _colorSet = signal(COLORS.PINK_CREME);
-  private _canPassThroughWalls = signal(OptionsService.CAN_PASS_THROUGH_WALLS);
+  private _canPassThroughWalls = signal(OptionsService._CAN_PASS_THROUGH_WALLS);
   
   constructor() {
     effect(() => {
-      OptionsService.CAN_PASS_THROUGH_WALLS = this._canPassThroughWalls();
+      OptionsService._CAN_PASS_THROUGH_WALLS = this._canPassThroughWalls();
     });
+  }
+  
+  static get CAN_PASS_THROUGH_WALLS(): boolean {
+    return this._CAN_PASS_THROUGH_WALLS;
   }
   
   get difficulty(): Signal<Difficulty> {
@@ -27,7 +31,7 @@ export class OptionsService {
   }
   
   set difficulty(difficulty: Difficulty) {
-    this._difficulty.set(difficulty)
+    this._difficulty.set(difficulty);
   }
   
   get canPassThroughWalls(): Signal<boolean> {
@@ -35,24 +39,24 @@ export class OptionsService {
   }
   
   set canPassThroughWalls(canPassThroughWalls: boolean) {
-    this._canPassThroughWalls.set(canPassThroughWalls)
+    this._canPassThroughWalls.set(canPassThroughWalls);
   }
   
   get currentGameOptionsObject(): GameplayOptions {
-    return {difficulty: this._difficulty(), canPassThroughWalls: this._canPassThroughWalls()}
+    return {difficulty: this._difficulty(), canPassThroughWalls: `${this._canPassThroughWalls()}`};
   }
   
   get currentVisualOptionsObject(): VisualOptions {
-    return {colorSetName: this._colorSet().name}
+    return {colorSetName: this._colorSet().name};
   }
   
   set colorSet(colors: ColorSet) {
     this._colorSet.set(colors);
-    document.documentElement.style.setProperty('--easy',colors.easy)
-    document.documentElement.style.setProperty('--easy-darker',colors.easyDarker)
-    document.documentElement.style.setProperty('--hard',colors.hard)
-    document.documentElement.style.setProperty('--hard-lighter',colors.hardLighter)
-    document.documentElement.style.setProperty('--cosy',colors.cosy)
+    document.documentElement.style.setProperty('--easy', colors.easy);
+    document.documentElement.style.setProperty('--easy-darker', colors.easyDarker);
+    document.documentElement.style.setProperty('--hard', colors.hard);
+    document.documentElement.style.setProperty('--hard-lighter', colors.hardLighter);
+    document.documentElement.style.setProperty('--cosy', colors.cosy);
   }
   
 }
