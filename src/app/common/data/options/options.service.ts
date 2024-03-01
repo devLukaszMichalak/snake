@@ -47,6 +47,7 @@ export class OptionsService {
   }
   
   set colorSet(colors: ColorSet) {
+    this._colorSet.set(colors);
     document.documentElement.style.setProperty('--easy',colors.easy)
     document.documentElement.style.setProperty('--easy-darker',colors.easyDarker)
     document.documentElement.style.setProperty('--hard',colors.hard)
