@@ -1,9 +1,9 @@
-<div class="game-container" (swipe)="onSwipe($event)" >
+<div class="game-container" (swipe)="onSwipe($event)">
     <app-board/>
     <app-menu-button [route]="Pages.MENU" [label]="'Back'"></app-menu-button>
 </div>
 
-<dialog>
-    <p>{{ dialogText }}</p>
-    <button>Close</button>
+<dialog #dialogElement>
+    <p>{{ dialogText() }}</p>
+    <button (click)="closeDialog()">Close</button>
 </dialog>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { Pages } from '../routing/pages';
 import { MenuButtonComponent } from '../common/ui/menu-button/menu-button.component';
@@ -12,7 +12,8 @@ import { MenuButtonComponent } from '../common/ui/menu-button/menu-button.compon
     MenuButtonComponent
   ],
   templateUrl: './options.component.html',
-  styleUrl: './options.component.scss'
+  styleUrl: './options.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OptionsComponent {
   

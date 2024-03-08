@@ -1,4 +1,4 @@
-import { Component, input, InputSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Pages } from '../../../routing/pages';
 
@@ -9,7 +9,8 @@ import { Pages } from '../../../routing/pages';
     RouterLink
   ],
   templateUrl: './menu-button.component.html',
-  styleUrl: './menu-button.component.scss'
+  styleUrl: './menu-button.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuButtonComponent {
   

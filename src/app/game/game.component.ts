@@ -1,4 +1,4 @@
-import { Component, DestroyRef, HostListener, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, ElementRef, HostListener, inject, OnInit, signal, ViewChild, WritableSignal } from '@angular/core';
 import { BoardComponent } from './ui/board/board.component';
 import { BoardService } from './data/board/board.service';
 import { Direction } from './data/board/direction';
@@ -17,7 +17,8 @@ import { MenuButtonComponent } from '../common/ui/menu-button/menu-button.compon
     MenuButtonComponent
   ],
   templateUrl: './game.component.html',
-  styleUrl: './game.component.scss'
+  styleUrl: './game.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GameComponent implements OnInit {
   
@@ -25,17 +26,25 @@ export class GameComponent implements OnInit {
   private optionsService = inject(OptionsService);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
+  private changeDetectorRef = inject(ChangeDetectorRef);
   
   readonly Pages = Pages;
-  dialogText: string = '';
+  
+  @ViewChild('dialogElement')
+  dialog!: ElementRef<HTMLDialogElement>;
+  
+  dialogText: WritableSignal<string> = signal('');
   
   ngOnInit() {
     timer(this.optionsService.difficulty(), this.optionsService.difficulty())
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .pipe(takeWhile(() => this.boardService.direction() !== Direction.NONE))
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        takeWhile(() => this.boardService.direction() !== Direction.NONE)
+      )
       .subscribe(() => {
         try {
           this.boardService.move();
+          this.changeDetectorRef.markForCheck();
           
         } catch (error) {
           this.endTheGame();
@@ -82,27 +91,21 @@ export class GameComponent implements OnInit {
     this.boardService.direction = direction;
   }
   
+  closeDialog = () => {
+    this.dialog.nativeElement.close();
+    this.router.navigate(['/' + Pages.MENU])
+      .then(() => this.boardService.reset());
+  };
+  
   private endTheGame() {
     this.boardService.direction = Direction.NONE;
     if (this.boardService.board().isWin()) {
-      this.dialogText = `Congratulations! You won!.`;
+      this.dialogText.set(`Congratulations! You won!.`);
     } else {
-      this.dialogText = 'Game over!';
+      this.dialogText.set('Game over!');
     }
     
-    this.showDialog();
-  }
-  
-  private showDialog() {
-    const dialog = document.querySelector('dialog');
-    dialog?.showModal();
-    
-    const closeButton = document.querySelector('dialog button');
-    closeButton?.addEventListener('click', () => {
-      dialog?.close();
-      this.router.navigate(['/' + Pages.MENU])
-        .then(() => this.boardService.reset());
-    });
+    this.dialog.nativeElement.showModal();
   }
   
 }

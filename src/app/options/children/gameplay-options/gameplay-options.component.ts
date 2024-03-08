@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { OptionsService } from '../../../common/data/options/options.service';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Difficulty } from '../../../common/data/options/gameplay/difficulty';
@@ -14,7 +14,8 @@ type GameplayOptionsForm = FormGroup<{
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './gameplay-options.component.html',
-  styleUrl: './gameplay-options.component.scss'
+  styleUrl: './gameplay-options.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GameplayOptionsComponent implements OnInit {
   

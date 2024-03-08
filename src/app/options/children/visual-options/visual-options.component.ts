@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { OptionsService } from '../../../common/data/options/options.service';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -17,7 +17,8 @@ type VisualOptionsForm = FormGroup<{
     ReactiveFormsModule
   ],
   templateUrl: './visual-options.component.html',
-  styleUrl: './visual-options.component.scss'
+  styleUrl: './visual-options.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VisualOptionsComponent implements OnInit {
   

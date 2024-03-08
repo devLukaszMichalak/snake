@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Pages } from '../routing/pages';
 import { MenuButtonComponent } from '../common/ui/menu-button/menu-button.component';
 
@@ -9,7 +9,8 @@ import { MenuButtonComponent } from '../common/ui/menu-button/menu-button.compon
     MenuButtonComponent
   ],
   templateUrl: './main-menu.component.html',
-  styleUrl: './main-menu.component.scss'
+  styleUrl: './main-menu.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainMenuComponent {
   
