@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, ElementRef, HostListener, inject, OnInit, signal, ViewChild, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, ElementRef, HostListener, inject, OnInit, Signal, signal, viewChild, WritableSignal } from '@angular/core';
 import { BoardComponent } from './ui/board/board.component';
 import { BoardService } from './data/board/board.service';
 import { Direction } from './data/board/direction';
@@ -30,8 +30,7 @@ export class GameComponent implements OnInit {
   
   readonly Pages = Pages;
   
-  @ViewChild('dialogElement')
-  dialog!: ElementRef<HTMLDialogElement>;
+  dialog: Signal<ElementRef<HTMLDialogElement>> = viewChild.required('dialogElement');
   
   dialogText: WritableSignal<string> = signal('');
   
@@ -92,7 +91,7 @@ export class GameComponent implements OnInit {
   }
   
   closeDialog = () => {
-    this.dialog.nativeElement.close();
+    this.dialog().nativeElement.close();
     this.router.navigate(['/' + Pages.MENU])
       .then(() => this.boardService.reset());
   };
@@ -105,7 +104,7 @@ export class GameComponent implements OnInit {
       this.dialogText.set('Game over!');
     }
     
-    this.dialog.nativeElement.showModal();
+    this.dialog().nativeElement.showModal();
   }
   
 }
