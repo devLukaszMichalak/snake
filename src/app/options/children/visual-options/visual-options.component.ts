@@ -29,7 +29,7 @@ export class VisualOptionsComponent implements OnInit {
   protected readonly ColorSetName = ColorSetName;
   
   visualOptionsForm: VisualOptionsForm = this.formBuilder.group({
-      colorSetName: [ColorSetName.GREENISH as any]
+      colorSetName: [ColorSetName.GREENISH]
     }
   );
   

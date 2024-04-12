@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, Elem
 import { BoardComponent } from './ui/board/board.component';
 import { BoardService } from './data/board/board.service';
 import { Direction } from './data/board/direction';
-import { takeWhile, timer } from 'rxjs';
+import { filter, takeUntil, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { Pages } from '../routing/pages';
@@ -34,11 +34,14 @@ export class GameComponent implements OnInit {
   
   dialogText: WritableSignal<string> = signal('');
   
+  private directionNone$ = this.boardService.directionChange
+    .pipe(filter(direction => direction === Direction.NONE));
+  
   ngOnInit() {
     timer(this.optionsService.difficulty(), this.optionsService.difficulty())
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        takeWhile(() => this.boardService.direction() !== Direction.NONE)
+        takeUntil(this.directionNone$)
       )
       .subscribe(() => {
         try {
@@ -75,16 +78,18 @@ export class GameComponent implements OnInit {
     }
   }
   
-  onSwipe(event: any) {
-    if (Math.abs(event.deltaX) <= 40 && Math.abs(event.deltaY) <= 40) {
+  onSwipe(event: unknown) {
+    const hammerInput = event as HammerInput;
+    
+    if (Math.abs(hammerInput.deltaX) <= 40 && Math.abs(hammerInput.deltaY) <= 40) {
       return;
     }
     
     let direction: Direction;
-    if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
-      direction = event.deltaX > 0 ? Direction.RIGHT : Direction.LEFT;
+    if (Math.abs(hammerInput.deltaX) > Math.abs(hammerInput.deltaY)) {
+      direction = hammerInput.deltaX > 0 ? Direction.RIGHT : Direction.LEFT;
     } else {
-      direction = event.deltaY > 0 ? Direction.DOWN : Direction.UP;
+      direction = hammerInput.deltaY > 0 ? Direction.DOWN : Direction.UP;
     }
     
     this.boardService.direction = direction;

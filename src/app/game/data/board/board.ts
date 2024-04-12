@@ -8,7 +8,7 @@ export class Board {
   
   private static readonly BOARD_SIZE = 10;
   
-  private board = new Map<Row, Cell[]>()
+  private board = new Map<Row, Cell[]>();
   private snakeBody = [new Position(0, 0)];
   
   constructor() {
@@ -35,7 +35,7 @@ export class Board {
   setRandomApple() {
     const row = this.getRandom();
     const column = this.getRandom();
-    let appleCellPretender = this.board.get(row)![column];
+    const appleCellPretender = this.board.get(row)![column];
     
     if (appleCellPretender.occupant === Occupant.VOID) {
       appleCellPretender.occupant = Occupant.APPLE;
@@ -109,12 +109,12 @@ export class Board {
   }
   
   private move(oldHead: Position, newHead: Position) {
-    let tail = this.snakeBody[0];
+    const tail = this.snakeBody[0];
     if (this.snakeBody.length === 2 && tail.row === newHead.row && tail.column === newHead.column) {
       throw new Error();
     }
     
-    let cellOccupant = this.getCellOccupant(newHead);
+    const cellOccupant = this.getCellOccupant(newHead);
     if (tail.row === newHead.row && tail.column === newHead.column) {
       this.snakeBody.shift();
       this.snakeBody.push(newHead);

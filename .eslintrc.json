@@ -1,0 +1,103 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "createDefaultProgram": true,
+        "project": [
+          "./tsconfig.app.json",
+          "./tsconfig.json"
+        ]
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@typescript-eslint/strict",
+        "plugin:rxjs/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "plugins": [
+        "unused-imports",
+        "rxjs",
+        "@rdlabo/rules"
+      ],
+      "rules": {
+        "no-debugger": "error",
+        "no-bitwise": "error",
+        "no-console": "warn",
+        "no-alert": "warn",
+        "@typescript-eslint/prefer-literal-enum-member": "warn",
+        "@typescript-eslint/no-non-null-assertion": "warn",
+        "rxjs/no-implicit-any-catch": "warn",
+        "@angular-eslint/use-lifecycle-interface": "error",
+        "@rdlabo/rules/import-inject-object": "error",
+        "@rdlabo/rules/deny-constructor-di": "error",
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@typescript-eslint/no-extraneous-class": [
+          "error",
+          {
+            "allowEmpty": true
+          }
+        ],
+        "@angular-eslint/no-empty-lifecycle-method": [
+          "error"
+        ],
+        "semi": [
+          "error",
+          "always"
+        ],
+        "no-unused-vars": "warn",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+          "error",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.service.ts"
+      ],
+      "extends": [
+      ],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "error"
+      }
+    }
+  ]
+}

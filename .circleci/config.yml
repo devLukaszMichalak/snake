@@ -21,6 +21,9 @@ jobs:
           paths:
             - ~/.npm
       - run:
+          name: Lint project
+          command: npm run lint
+      - run:
           name: Build project
           command: npm run build
       - run:
