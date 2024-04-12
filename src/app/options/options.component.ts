@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { Pages } from '../routing/pages';
 import { MenuButtonComponent } from '../common/ui/menu-button/menu-button.component';
+import { provideBounceRouteAnimation } from '../common/utils/bounce-route-animation';
+import { AnimatedOutletAbstractComponent } from '../common/utils/animated-outlet-abstract-component.component';
 
 @Component({
   selector: 'app-options',
@@ -13,9 +15,10 @@ import { MenuButtonComponent } from '../common/ui/menu-button/menu-button.compon
   ],
   templateUrl: './options.component.html',
   styleUrl: './options.component.scss',
+  animations: [provideBounceRouteAnimation({position: 'fixed', width: '50%'})],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OptionsComponent {
+export class OptionsComponent extends AnimatedOutletAbstractComponent {
   
   protected readonly Pages = Pages;
 }

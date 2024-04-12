@@ -3,6 +3,8 @@
         <app-menu-button [label]="'Gameplay'" [route]="Pages.OPTIONS_GAMEPLAY"></app-menu-button>
         <app-menu-button [label]="'Visual'" [route]="Pages.OPTIONS_VISUAL"></app-menu-button>
     </div>
-    <router-outlet></router-outlet>
+    <div [@bounceRouteAnimation]="prepareOutletAnimation(outlet)" class="options">
+        <router-outlet #outlet="outlet"/>
+    </div>
     <app-menu-button [route]="Pages.MENU" [label]="'Back'"></app-menu-button>
 </div>
