@@ -35,20 +35,11 @@ export class VisualOptionsComponent implements OnInit {
   
   ngOnInit(): void {
     this.visualOptionsForm.patchValue(this.optionsService.currentVisualOptionsObject);
+    
     this.visualOptionsForm.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(formData => {
-        
-        switch (formData.colorSetName) {
-          case ColorSetName.PINK_CREME:
-            this.optionsService.colorSet = COLORS.PINK_CREME;
-            break;
-          case ColorSetName.GREENISH:
-            this.optionsService.colorSet = COLORS.GREENISH;
-            break;
-        }
-        
-      });
+      .subscribe(formData =>
+        this.optionsService.colorSet = COLORS.findByName(formData.colorSetName));
   }
   
 }

@@ -12,6 +12,8 @@ export class ColorSet {
 }
 
 export enum ColorSetName {
-  PINK_CREME = 'pink-creme',
-  GREENISH = 'green'
+  PINK_CREME = 'Pink-creme',
+  GREENISH = 'Greenish',
+  SUNSET_ORANGE = 'Sunset orange',
+  PURPLE_HAZE = 'Purple haze',
 }

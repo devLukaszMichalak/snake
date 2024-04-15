@@ -4,11 +4,14 @@ import { GameplayOptions } from './gameplay/gameplay-options';
 import { COLORS } from './visual/colors';
 import { VisualOptions } from './visual/visual-options';
 import { ColorSet } from './visual/color-set';
+import { setColorSet } from '../../../initial-color-set-provider';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OptionsService {
+  
+  static readonly STORAGE_KEY = 'snake-options';
   
   private static _CAN_PASS_THROUGH_WALLS = true;
   
@@ -16,9 +19,30 @@ export class OptionsService {
   private _colorSet = signal(COLORS.PINK_CREME);
   private _canPassThroughWalls = signal(OptionsService._CAN_PASS_THROUGH_WALLS);
   
+  private optionsToStore = computed(() => ({
+    difficulty: this._difficulty(),
+    colorSet: this._colorSet(),
+    canPassThroughWalls: this._canPassThroughWalls()
+  }));
+  
   constructor() {
+    const storedOptions = JSON.parse(localStorage.getItem(OptionsService.STORAGE_KEY) || '{}');
+    if (storedOptions) {
+      this._difficulty.set(storedOptions.difficulty || Difficulty.EASY);
+      this._colorSet.set(storedOptions.colorSet || COLORS.PINK_CREME);
+      this._canPassThroughWalls.set(storedOptions.canPassThroughWalls ?? OptionsService._CAN_PASS_THROUGH_WALLS);
+    }
+    
+    effect(() => {
+      setColorSet(this._colorSet());
+    });
+    
     effect(() => {
       OptionsService._CAN_PASS_THROUGH_WALLS = this._canPassThroughWalls();
+    });
+    
+    effect(() => {
+      localStorage.setItem(OptionsService.STORAGE_KEY, JSON.stringify(this.optionsToStore()));
     });
   }
   
@@ -52,11 +76,6 @@ export class OptionsService {
   
   set colorSet(colors: ColorSet) {
     this._colorSet.set(colors);
-    document.documentElement.style.setProperty('--easy', colors.easy);
-    document.documentElement.style.setProperty('--easy-darker', colors.easyDarker);
-    document.documentElement.style.setProperty('--hard', colors.hard);
-    document.documentElement.style.setProperty('--hard-lighter', colors.hardLighter);
-    document.documentElement.style.setProperty('--cosy', colors.cosy);
   }
   
 }
