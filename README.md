@@ -5,4 +5,4 @@ Check it out here: https://nice-snake-you-got-here.web.app
 
 ## Footage
 
-![snake](https://github.com/devLukaszMichalak/snake/assets/48216995/5541791a-016f-4d16-b1c0-c2ee5c81cd01)
+https://github.com/devLukaszMichalak/snake/assets/48216995/623b2767-2afc-47a2-923f-a5f6b16f1c59
